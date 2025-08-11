@@ -1,102 +1,240 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    // Handle form submission here
+    alert("Message sent! We'll get back to you soon.");
+    setFormData({ name: "", email: "", message: "" });
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Header/Navigation */}
+      <nav className="fixed w-full bg-white/90 backdrop-blur-sm z-50 border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="text-2xl font-bold text-blue-600">
+              AI Automation Flow
+            </div>
+            <div className="hidden md:flex space-x-8">
+              <a href="#services" className="text-gray-600 hover:text-blue-600">Services</a>
+              <a href="#pricing" className="text-gray-600 hover:text-blue-600">Pricing</a>
+              <a href="#work" className="text-gray-600 hover:text-blue-600">Our Work</a>
+              <a href="#contact" className="text-gray-600 hover:text-blue-600">Contact</a>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            Build Apps & Automations
+            <span className="text-blue-600 block">For Your Business</span>
+          </h1>
+          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            Simple apps for $1,000. Complex apps for $5,000. One month delivery with unlimited revisions.
+            We also build websites, automations, and handle your marketing.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#contact"
+              className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            >
+              Get Started Today
+            </a>
+            <a
+              href="#work"
+              className="border border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+            >
+              View Our Work
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-16 bg-gray-50 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">What We Do</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className="text-blue-600 text-3xl mb-4">📱</div>
+              <h3 className="text-xl font-semibold mb-2">App Development</h3>
+              <p className="text-gray-600">Simple and complex apps tailored to your business needs</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className="text-blue-600 text-3xl mb-4">⚡</div>
+              <h3 className="text-xl font-semibold mb-2">Automation</h3>
+              <p className="text-gray-600">Streamline your workflows with powerful automations</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className="text-blue-600 text-3xl mb-4">🌐</div>
+              <h3 className="text-xl font-semibold mb-2">Website Building</h3>
+              <p className="text-gray-600">Professional websites that convert visitors to customers</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className="text-blue-600 text-3xl mb-4">📈</div>
+              <h3 className="text-xl font-semibold mb-2">Marketing</h3>
+              <p className="text-gray-600">SEO, Meta ads, and Google ads to grow your business</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">Simple Pricing</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="border-2 border-gray-200 rounded-lg p-8 text-center">
+              <h3 className="text-2xl font-bold mb-4">Simple Apps</h3>
+              <div className="text-4xl font-bold text-blue-600 mb-4">$1,000</div>
+              <ul className="text-left space-y-2 mb-6">
+                <li className="flex items-center"><span className="text-green-600 mr-2">✓</span>Basic functionality</li>
+                <li className="flex items-center"><span className="text-green-600 mr-2">✓</span>Mobile responsive</li>
+                <li className="flex items-center"><span className="text-green-600 mr-2">✓</span>One month delivery</li>
+                <li className="flex items-center"><span className="text-green-600 mr-2">✓</span>Unlimited revisions</li>
+              </ul>
+            </div>
+            <div className="border-2 border-blue-600 rounded-lg p-8 text-center relative">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-4 py-1 rounded-full text-sm">
+                Most Popular
+              </div>
+              <h3 className="text-2xl font-bold mb-4">Complex Apps</h3>
+              <div className="text-4xl font-bold text-blue-600 mb-4">$5,000</div>
+              <ul className="text-left space-y-2 mb-6">
+                <li className="flex items-center"><span className="text-green-600 mr-2">✓</span>Advanced features</li>
+                <li className="flex items-center"><span className="text-green-600 mr-2">✓</span>Database integration</li>
+                <li className="flex items-center"><span className="text-green-600 mr-2">✓</span>User authentication</li>
+                <li className="flex items-center"><span className="text-green-600 mr-2">✓</span>One month delivery</li>
+                <li className="flex items-center"><span className="text-green-600 mr-2">✓</span>Unlimited revisions</li>
+              </ul>
+            </div>
+          </div>
+          <div className="text-center mt-8">
+            <p className="text-gray-600">All projects include unlimited revisions and one month delivery guarantee</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Work Showcase */}
+      <section id="work" className="py-16 bg-gray-50 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">Our Work</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+              <div className="bg-gradient-to-r from-blue-400 to-purple-500 h-48"></div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">E-commerce Platform</h3>
+                <p className="text-gray-600">Complete online store with payment integration and inventory management</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+              <div className="bg-gradient-to-r from-green-400 to-blue-500 h-48"></div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Task Management App</h3>
+                <p className="text-gray-600">Streamlined project management with team collaboration features</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+              <div className="bg-gradient-to-r from-purple-400 to-pink-500 h-48"></div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Business Automation</h3>
+                <p className="text-gray-600">Custom workflow automation reducing manual tasks by 80%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form */}
+      <section id="contact" className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">Get In Touch</h2>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                placeholder="Your name"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                placeholder="your.email@example.com"
+              />
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={4}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                placeholder="Tell us about your project..."
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto text-center">
+          <div className="text-2xl font-bold mb-4">AI Automation Flow</div>
+          <p className="text-gray-400 mb-6">Building the future of business automation</p>
+          <div className="border-t border-gray-800 pt-8 mt-8">
+            <p className="text-gray-400">&copy; 2025 AI Automation Flow. All rights reserved.</p>
+          </div>
+        </div>
       </footer>
     </div>
   );
