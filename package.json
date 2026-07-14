@@ -1,5 +1,5 @@
 {
-  "name": "aiautomationflow",
+  "name": "llmconsulting",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "next": "15.4.10"
+    "next": "^16.2.10",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
